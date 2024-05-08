@@ -10,6 +10,7 @@
 *.userosscache
 *.sln.docstates
 *.angular/*
-*.vscode/*
-*node_modules/
-*node_modules/*
+frontend/.vscode/*
+frontend/node_modules/*
+frontend/.angular/*
+frontend/dist/*
