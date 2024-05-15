@@ -1,7 +1,7 @@
-package org.example.web;
+package org.inseirou.web;
 
-import org.example.dto.MovieDTO;
-import org.example.repository.MoviesRepository;
+import org.inseirou.dto.MovieDTO;
+import org.inseirou.repository.MoviesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

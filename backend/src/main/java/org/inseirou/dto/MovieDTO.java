@@ -1,4 +1,4 @@
-package org.example.dto;
+package org.inseirou.dto;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

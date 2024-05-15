@@ -1,6 +1,6 @@
-package org.example.repository;
+package org.inseirou.repository;
 
-import org.example.dto.MovieDTO;
+import org.inseirou.dto.MovieDTO;
 import org.springframework.data.repository.ListCrudRepository;
 
 public interface MoviesRepository extends ListCrudRepository<MovieDTO, Long> {

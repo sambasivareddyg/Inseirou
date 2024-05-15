@@ -1,6 +1,6 @@
-package org.example.web;
+package org.inseirou.web;
 
-import org.example.dto.MovieDTO;
+import org.inseirou.dto.MovieDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
