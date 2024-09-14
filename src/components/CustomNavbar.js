@@ -7,7 +7,7 @@ function CustomNavbar() {
     <header>
       <nav className="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
         <div className="container">
-          <a className="navbar-brand" href="index.html">
+          <Link className="navbar-brand" to="/">
             <img
               src={piepng}
               width="30"
@@ -16,7 +16,7 @@ function CustomNavbar() {
               alt="Bethany's Pie Shop Logo"
             />
             Bethany's Pie Shop
-          </a>
+          </Link>
 
           <button
             className="navbar-toggler"

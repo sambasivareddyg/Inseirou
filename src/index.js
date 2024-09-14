@@ -6,7 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import Contact from "./components/Contact";
-import AllPiesComponent from "./components/AllPiesComponent";
+import AllPiesComponent from "./components/ApplePieComponent";
+import FruitPiesComponent from "./components/FruitPiesComponent";
+import ApplePieComponent from "./components/ApplePieComponent";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,6 +18,8 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="/allPies" element={<AllPiesComponent />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/fruitpies" element={<FruitPiesComponent />} />
+        <Route path="/applepie" element={<ApplePieComponent />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
