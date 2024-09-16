@@ -9,6 +9,7 @@ import Contact from "./components/Contact";
 import AllPiesComponent from "./components/ApplePieComponent";
 import FruitPiesComponent from "./components/FruitPiesComponent";
 import ApplePieComponent from "./components/ApplePieComponent";
+import CheeseCakesComponent from "./components/CheeseCakesComponent";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,6 +21,7 @@ root.render(
         <Route path="/contact" element={<Contact />} />
         <Route path="/fruitpies" element={<FruitPiesComponent />} />
         <Route path="/applepie" element={<ApplePieComponent />} />
+        <Route path="/cheesecakes" element={<CheeseCakesComponent />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

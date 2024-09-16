@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function CustomNavbar() {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+      <nav className="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
         <div className="container">
           <Link className="navbar-brand" to="/">
             <img

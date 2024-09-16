@@ -12,27 +12,48 @@ function ToastComponent() {
   return (
     <div>
       <Form>
-        <Form.Group controlId="formName">
-          <Form.Label>Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter your name" />
-        </Form.Group>
-
-        <Form.Group controlId="formEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter your email" />
-        </Form.Group>
-        <Form.Group controlId="formMessage">
-          <Form.Label>Message</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={3}
-            placeholder="Enter your message"
-          />
-        </Form.Group>
-
-        <Button variant="primary" onClick={handleClick} type="button">
-          Submit
-        </Button>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <div class="mb-2">
+              <Form.Group controlId="formName">
+                <Form.Label>Name</Form.Label>
+                <Form.Control type="text" placeholder="Enter your name" />
+              </Form.Group>
+            </div>
+            <div class="mb-2">
+              <Form.Group controlId="formEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="Enter your email" />
+              </Form.Group>
+            </div>
+            <div class="mb-2">
+              <Form.Group controlId="formPhone">
+                <Form.Label>Phone Number</Form.Label>
+                <Form.Control
+                  type="phone"
+                  placeholder="Enter your phone number"
+                />
+              </Form.Group>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mb-2">
+              <Form.Group controlId="formMessage">
+                <Form.Label>Message</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={6}
+                  placeholder="Enter your message"
+                />
+              </Form.Group>
+            </div>
+            <div class="mb-2">
+              <Button variant="primary" onClick={handleClick} type="button">
+                Submit
+              </Button>
+            </div>
+          </div>
+        </div>
       </Form>
       <div
         aria-live="polite"

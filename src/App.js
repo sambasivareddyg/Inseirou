@@ -8,8 +8,6 @@ import CarouselComponent from "./components/CarouselComponent";
 import BreadcrumbComponent from "./components/BreadcrumbComponent";
 import HistoryComponent from "./components/HistoryComponent";
 import ProductsOfTheWeekComponent from "./components/ProductsOfTheWeekComponent";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Contact from "./components/Contact";
 
 function App() {
   return (
