@@ -1,5 +1,4 @@
 import "../App.css";
-import piepng from "../assets/images/pie.png";
 import { Link } from "react-router-dom";
 import carousel1 from "../assets/images/carousel1.jpg";
 import strawberrypiesmall from "../assets/images/products/strawberrypiesmall.jpg";
@@ -13,12 +12,12 @@ import cherrypiesmall from "../assets/images/products/cherrypiesmall.jpg";
 import cheesecakesmall from "../assets/images/products/cheesecakesmall.jpg";
 import blueberrycheesecakesmall from "../assets/images/products/blueberrycheesecakesmall.jpg";
 import christmasapplepiesmall from "../assets/images/products/christmasapplepiesmall.jpg";
-import CustomNavbar from "./CustomNavbar";
+import CustomNavbarComponent from "./CustomNavbarComponent";
 
 function AllPiesComponent() {
   return (
     <div>
-      <CustomNavbar />
+      <CustomNavbarComponent />
       <main role="main">
         <div class="container-fluid jumbotron jumbotron-all-pies py-5">
           <div class="container">

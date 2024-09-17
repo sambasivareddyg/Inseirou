@@ -1,23 +1,14 @@
 import "../App.css";
-import piepng from "../assets/images/pie.png";
 import { Link } from "react-router-dom";
-import applepie from "../assets/images/products/applepie.jpg";
 import christmasapplepiesmallsquare from "../assets/images/products/christmasapplepiesmallsquare.jpg";
 import cranberrypiesmallsquare from "../assets/images/products/cranberrypiesmallsquare.jpg";
 import pumpkinpiesmallsquare from "../assets/images/products/pumpkinpiesmallsquare.jpg";
-import rhubarbpiesmall from "../assets/images/products/rhubarbpiesmall.jpg";
-import cps from "../assets/images/products/cranberrypiesmall.jpg";
-import pkps from "../assets/images/products/pumpkinpiesmall.jpg";
-import applepiesmall from "../assets/images/products/applepiesmall.jpg";
-import cherrypiesmall from "../assets/images/products/cherrypiesmall.jpg";
-import peachpiesmall from "../assets/images/products/peachpiesmall.jpg";
-import strawberrypiesmall from "../assets/images/products/strawberrypiesmall.jpg";
-import CustomNavbar from "./CustomNavbar";
+import CustomNavbarComponent from "./CustomNavbarComponent";
 
 function SeasonalPiesComponent() {
   return (
     <div>
-      <CustomNavbar />
+      <CustomNavbarComponent />
       <main role="main">
         <div class="container-fluid jumbotron jumbotron-seasonal-pies py-5">
           <div class="container">

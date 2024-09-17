@@ -1,5 +1,5 @@
 import "../App.css";
-import CustomNavbar from "./CustomNavbar";
+import CustomNavbarComponent from "./CustomNavbarComponent";
 import { Link } from "react-router-dom";
 import applepie from "../assets/images/products/applepie.jpg";
 import sbp from "../assets/images/products/strawberrypiesmall.jpg";
@@ -12,7 +12,7 @@ import applepiesmall from "../assets/images/products/applepiesmall.jpg";
 function ApplePieComponent() {
   return (
     <div>
-      <CustomNavbar />
+      <CustomNavbarComponent />
       <main role="main">
         <div className="container-fluid jumbotron jumbotron-detail-apple-pie py-5">
           <div className="container">

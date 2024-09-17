@@ -2,7 +2,7 @@ import "../assets/css/CustomNavbar.css";
 import piepng from "../assets/images/pie.png";
 import { Link } from "react-router-dom";
 
-function CustomNavbar() {
+function CustomNavbarComponent() {
   return (
     <header>
       <nav
@@ -102,4 +102,4 @@ function CustomNavbar() {
     </header>
   );
 }
-export default CustomNavbar;
+export default CustomNavbarComponent;

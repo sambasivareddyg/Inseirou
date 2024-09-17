@@ -1,12 +1,11 @@
 import "../App.css";
 import "../assets/css/CustomNavbar.css";
-import { Form, Button, Container } from "react-bootstrap";
-import CustomNavbar from "./CustomNavbar";
-import BreadcrumbComponent from "./BreadcrumbComponent";
-import React, { useEffect } from "react";
+import { Container } from "react-bootstrap";
+import CustomNavbar from "./CustomNavbarComponent";
+import React from "react";
 import ToastComponent from "./ToastComponent";
 
-function Contact() {
+function ContactComponent() {
   return (
     <div>
       <CustomNavbar />
@@ -27,4 +26,4 @@ function Contact() {
     </div>
   );
 }
-export default Contact;
+export default ContactComponent;

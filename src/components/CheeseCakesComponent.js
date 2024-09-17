@@ -1,24 +1,14 @@
 import "../App.css";
-import piepng from "../assets/images/pie.png";
 import { Link } from "react-router-dom";
-import applepie from "../assets/images/products/applepie.jpg";
-import sbp from "../assets/images/products/strawberrypiesmall.jpg";
 import blueberrycheesecakesmall from "../assets/images/products/blueberrycheesecakesmall.jpg";
 import cheesecakesmall from "../assets/images/products/cheesecakesmall.jpg";
 import strawberrycheesecakesmall from "../assets/images/products/strawberrycheesecakesmall.jpg";
-import rhubarbpiesmall from "../assets/images/products/rhubarbpiesmall.jpg";
-import cps from "../assets/images/products/cranberrypiesmall.jpg";
-import pkps from "../assets/images/products/pumpkinpiesmall.jpg";
-import applepiesmall from "../assets/images/products/applepiesmall.jpg";
-import cherrypiesmall from "../assets/images/products/cherrypiesmall.jpg";
-import peachpiesmall from "../assets/images/products/peachpiesmall.jpg";
-import strawberrypiesmall from "../assets/images/products/strawberrypiesmall.jpg";
-import CustomNavbar from "./CustomNavbar";
+import CustomNavbarComponent from "./CustomNavbarComponent";
 
 function CheeseCakesComponent() {
   return (
     <div>
-      <CustomNavbar />
+      <CustomNavbarComponent />
       <main role="main">
         <div class="container-fluid jumbotron jumbotron-cheese-cakes py-5">
           <div class="container">
