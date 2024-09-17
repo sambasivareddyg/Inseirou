@@ -5,21 +5,24 @@ import { Link } from "react-router-dom";
 function CustomNavbar() {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
-        <div className="container">
-          <Link className="navbar-brand" to="/">
+      <nav
+        class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary"
+        aria-label="Bethany's Pie Shop navigation header"
+      >
+        <div class="container">
+          <Link class="navbar-brand" to="/">
             <img
               src={piepng}
               width="30"
               height="30"
-              className="d-inline-block align-top"
+              class="d-inline-block align-top"
               alt="Bethany's Pie Shop Logo"
-            />
+            ></img>
             Bethany's Pie Shop
           </Link>
 
           <button
-            className="navbar-toggler"
+            class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarCollapse"
@@ -27,64 +30,72 @@ function CustomNavbar() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div className="collapse navbar-collapse" id="navbarCollapse">
-            <ul className="nav navbar-nav mr-auto">
-              <li className="nav-item ">
-                <Link className="nav-link active" to="/">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <Link class="nav-link" aria-current="page" to="/">
                   Home
                 </Link>
               </li>
-              <li className="nav-item dropdown">
+              <li class="nav-item dropdown">
                 <Link
-                  className="nav-link dropdown-toggle"
+                  class="nav-link dropdown-toggle active"
                   to="/"
                   id="nav-dropdown"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
                   Pies
+                  <span class="visually-hidden">(current)</span>
                 </Link>
-                <ul className="dropdown-menu" aria-labelledby="nav-dropdown">
+                <ul class="dropdown-menu" aria-labelledby="nav-dropdown">
                   <li>
-                    <Link className="dropdown-item" to="/fruitpies">
+                    <Link class="dropdown-item" to="/fruitpies">
                       Fruit Pies
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to="/cheesecakes">
+                    <Link class="dropdown-item" to="/cheesecakes">
                       Cheese cakes
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to="/seasonalpies">
+                    <Link class="dropdown-item" to="/seasonalpies">
                       Seasonal Pies
                     </Link>
                   </li>
                   <li>
-                    <hr className="dropdown-divider" />
+                    <hr class="dropdown-divider"></hr>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to="/allpies">
+                    <Link class="dropdown-item" to="/allpies">
                       All pies
                     </Link>
                   </li>
                 </ul>
               </li>
-
-              <li className="nav-item">
-                <Link className="nav-link " to="/piesubscription">
+              <li class="nav-item">
+                <Link class="nav-link" to="/piesubscription">
                   Pie subscription
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/contact">
+              <li class="nav-item">
+                <Link class="nav-link" to="/contact">
                   Contact
                 </Link>
               </li>
             </ul>
+            <form>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Search pies"
+                aria-label="Search"
+              ></input>
+            </form>
           </div>
         </div>
       </nav>

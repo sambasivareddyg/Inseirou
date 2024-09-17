@@ -13,94 +13,12 @@ import applepiesmall from "../assets/images/products/applepiesmall.jpg";
 import cherrypiesmall from "../assets/images/products/cherrypiesmall.jpg";
 import peachpiesmall from "../assets/images/products/peachpiesmall.jpg";
 import strawberrypiesmall from "../assets/images/products/strawberrypiesmall.jpg";
+import CustomNavbar from "./CustomNavbar";
 
 function CheeseCakesComponent() {
   return (
     <div>
-      <header>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark bg-primary">
-          <div class="container">
-            <Link class="navbar-brand" to="/">
-              <img
-                src={piepng}
-                width="30"
-                height="30"
-                class="d-inline-block align-top"
-                alt="Bethany's Pie Shop Logo"
-              ></img>
-              Bethany's Pie Shop
-            </Link>
-
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarCollapse"
-              aria-controls="navbarCollapse"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-              <ul class="nav navbar-nav mr-auto">
-                <li class="nav-item">
-                  <Link class="nav-link" to="/">
-                    Home
-                  </Link>
-                </li>
-                <li class="nav-item dropdown">
-                  <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="nav-dropdown"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    Pies
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="nav-dropdown">
-                    <li>
-                      <Link class="dropdown-item" to="/fruitpies">
-                        Fruit Pies
-                      </Link>
-                    </li>
-                    <li>
-                      <Link class="dropdown-item" to="/cheesecakes">
-                        Cheese cakes
-                      </Link>
-                    </li>
-                    <li>
-                      <Link class="dropdown-item" to="/seasonalpies">
-                        Seasonal Pies
-                      </Link>
-                    </li>
-                    <li>
-                      <hr class="dropdown-divider"></hr>
-                    </li>
-                    <li>
-                      <Link class="dropdown-item" to="/allpies">
-                        All pies
-                      </Link>
-                    </li>
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <Link class="nav-link" to="/piesubscription">
-                    Pie subscription
-                  </Link>
-                </li>
-                <li class="nav-item">
-                  <Link class="nav-link" to="/contact">
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </header>
+      <CustomNavbar />
       <main role="main">
         <div class="container-fluid jumbotron jumbotron-cheese-cakes py-5">
           <div class="container">

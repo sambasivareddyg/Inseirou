@@ -9,8 +9,8 @@ import ToastComponent from "./ToastComponent";
 function Contact() {
   return (
     <div>
+      <CustomNavbar />
       <main role="main">
-        <CustomNavbar />
         <div className="container-fluid jumbotron jumbotron-other py-5">
           <div className="container">
             <h1 className="display-3 d-none d-md-block text-white">
