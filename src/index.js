@@ -6,10 +6,11 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import Contact from "./components/Contact";
-import AllPiesComponent from "./components/ApplePieComponent";
+import AllPiesComponent from "./components/AllPiesComponent";
 import FruitPiesComponent from "./components/FruitPiesComponent";
 import ApplePieComponent from "./components/ApplePieComponent";
 import CheeseCakesComponent from "./components/CheeseCakesComponent";
+import SeasonalPiesComponent from "./components/SeasonalPiesComponent";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -17,11 +18,12 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/allPies" element={<AllPiesComponent />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/fruitpies" element={<FruitPiesComponent />} />
         <Route path="/applepie" element={<ApplePieComponent />} />
         <Route path="/cheesecakes" element={<CheeseCakesComponent />} />
+        <Route path="/allpies" element={<AllPiesComponent />} />
+        <Route path="/seasonalpies" element={<SeasonalPiesComponent />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

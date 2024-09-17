@@ -1,33 +1,37 @@
 import "../App.css";
-import CustomNavbar from "./CustomNavbar";
+import piepng from "../assets/images/pie.png";
 import { Link } from "react-router-dom";
-import applepie from "../assets/images/products/applepie.jpg";
-import sbp from "../assets/images/products/strawberrypiesmall.jpg";
-import rbps from "../assets/images/products/rhubarbpiesmall.jpg";
-import pps from "../assets/images/products/peachpiesmall.jpg";
-import cps from "../assets/images/products/cranberrypiesmall.jpg";
-import pkps from "../assets/images/products/pumpkinpiesmall.jpg";
+import carousel1 from "../assets/images/carousel1.jpg";
+import strawberrypiesmall from "../assets/images/products/strawberrypiesmall.jpg";
+import strawberrycheesecakesmall from "../assets/images/products/strawberrycheesecakesmall.jpg";
+import rhubarbpiesmall from "../assets/images/products/rhubarbpiesmall.jpg";
+import peachpiesmall from "../assets/images/products/peachpiesmall.jpg";
+import cranberrypiesmall from "../assets/images/products/cranberrypiesmall.jpg";
+import pumpkinpiesmall from "../assets/images/products/pumpkinpiesmall.jpg";
 import applepiesmall from "../assets/images/products/applepiesmall.jpg";
+import cherrypiesmall from "../assets/images/products/cherrypiesmall.jpg";
+import cheesecakesmall from "../assets/images/products/cheesecakesmall.jpg";
+import blueberrycheesecakesmall from "../assets/images/products/blueberrycheesecakesmall.jpg";
+import christmasapplepiesmall from "../assets/images/products/christmasapplepiesmall.jpg";
 function AllPiesComponent() {
   return (
     <div>
-      <CustomNavbar />
       <header>
         <nav
           class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary"
           aria-label="Bethany's Pie Shop navigation header"
         >
           <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <Link class="navbar-brand" to="/">
               <img
-                src="images/pie.png"
+                src={piepng}
                 width="30"
                 height="30"
                 class="d-inline-block align-top"
                 alt="Bethany's Pie Shop Logo"
-              />
+              ></img>
               Bethany's Pie Shop
-            </a>
+            </Link>
 
             <button
               class="navbar-toggler"
@@ -44,56 +48,56 @@ function AllPiesComponent() {
             <div class="collapse navbar-collapse" id="navbarCollapse">
               <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="index.html">
+                  <Link class="nav-link" aria-current="page" to="/">
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li class="nav-item dropdown">
-                  <a
+                  <Link
                     class="nav-link dropdown-toggle active"
-                    href="#"
+                    to="/"
                     id="nav-dropdown"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
                     Pies
                     <span class="visually-hidden">(current)</span>
-                  </a>
+                  </Link>
                   <ul class="dropdown-menu" aria-labelledby="nav-dropdown">
                     <li>
-                      <a class="dropdown-item" href="fruitpies.html">
+                      <Link class="dropdown-item" to="/fruitpies">
                         Fruit Pies
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="cheesecakes.html">
+                      <Link class="dropdown-item" to="/cheesecakes">
                         Cheese cakes
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="seasonalpies.html">
+                      <Link class="dropdown-item" to="/seasonalpies">
                         Seasonal Pies
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <hr class="dropdown-divider" />
+                      <hr class="dropdown-divider"></hr>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="allpies.html">
+                      <Link class="dropdown-item" to="/allpies">
                         All pies
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="piesubscription.html">
+                  <Link class="nav-link" to="/piesubscription">
                     Pie subscription
-                  </a>
+                  </Link>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="contact.html">
+                  <Link class="nav-link" to="/contact">
                     Contact
-                  </a>
+                  </Link>
                 </li>
               </ul>
               <form>
@@ -102,7 +106,7 @@ function AllPiesComponent() {
                   type="text"
                   placeholder="Search pies"
                   aria-label="Search"
-                />
+                ></input>
               </form>
             </div>
           </div>
@@ -119,18 +123,18 @@ function AllPiesComponent() {
         <div class="container">
           <nav
             aria-label="breadcrumb"
-            style="--bs-breadcrumb-divider: '>'"
+            style={{ "bs-breadcrumb-divider": ">" }}
             class="my-3 ms-3"
           >
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="/">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li class="breadcrumb-item">
-                <a href="#">Pies</a>
+                <Link to="/">Pies</Link>
               </li>
-              <li class="breadcrumb-item active" aria-current="page">
-                All pies
+              <li class="breadcrumb-item">
+                <Link to="/allpies">AllPies</Link>
               </li>
             </ol>
           </nav>
@@ -151,54 +155,45 @@ function AllPiesComponent() {
 
             <div class="col-sm-6 col-lg-4 mb-4">
               <div class="card">
-                <img
-                  class="card-img-top"
-                  src="images/products/applepiesmall.jpg"
-                />
+                <img class="card-img-top" src={applepiesmall}></img>
                 <div class="card-body">
                   <h5 class="card-title">Apple pie</h5>
                   <p class="card-text">Our famous apple pies!</p>
                 </div>
                 <div class="card-footer">
-                  <a href="applepie.html" class="btn btn-primary">
+                  <Link to="/applepie" class="btn btn-primary">
                     View details
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
 
             <div class="col-sm-6 col-lg-4 mb-4">
               <div class="card">
-                <img
-                  class="card-img-top"
-                  src="images/products/blueberrycheesecakesmall.jpg"
-                />
+                <img class="card-img-top" src={blueberrycheesecakesmall}></img>
                 <div class="card-body">
                   <h5 class="card-title">Blueberry cheese cake</h5>
-                  <p class="card-text">You'll love it!</p>
+                  <p class="card-text">You'll love it! </p>
                 </div>
                 <div class="card-footer">
-                  <a href="applepie.html" class="btn btn-primary">
+                  <Link to="/applepie" class="btn btn-primary">
                     View details
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
 
             <div class="col-sm-6 col-lg-4 mb-4">
               <div class="card">
-                <img
-                  class="card-img-top"
-                  src="images/products/cheesecakesmall.jpg"
-                />
+                <img class="card-img-top" src={cheesecakesmall}></img>
                 <div class="card-body">
                   <h5 class="card-title">Cheese cake</h5>
-                  <p class="card-text">Plain cheese cake. Plain pleasure.</p>
+                  <p class="card-text"> Plain cheese cake. Plain pleasure.</p>
                 </div>
                 <div class="card-footer">
-                  <a href="applepie.html" class="btn btn-primary">
+                  <Link to="/applepie" class="btn btn-primary">
                     View details
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -213,7 +208,7 @@ function AllPiesComponent() {
                     </p>
                   </blockquote>
                   <figcaption class="blockquote-footer mb-0 text-white">
-                    Laura Peach in
+                    Laura Peach in{" "}
                     <cite title="Source Title">The Pie Observer</cite>
                   </figcaption>
                 </figure>
@@ -222,114 +217,96 @@ function AllPiesComponent() {
 
             <div class="col-sm-6 col-lg-4 mb-4">
               <div class="card">
-                <img
-                  class="card-img-top"
-                  src="images/products/cherrypiesmall.jpg"
-                />
+                <img class="card-img-top" src={cherrypiesmall}></img>
                 <div class="card-body">
                   <h5 class="card-title">Cherry pie</h5>
                   <p class="card-text">A summer classic!</p>
                 </div>
                 <div class="card-footer">
-                  <a href="applepie.html" class="btn btn-primary">
+                  <Link to="/applepie" class="btn btn-primary">
                     View details
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
 
             <div class="col-sm-6 col-lg-4 mb-4">
               <div class="card">
-                <img
-                  class="card-img-top"
-                  src="images/products/christmasapplepiesmall.jpg"
-                />
+                <img class="card-img-top" src={christmasapplepiesmall}></img>
                 <div class="card-body">
                   <h5 class="card-title">Christmas apple pie</h5>
-                  <p class="card-text">Happy holidays with this pie!</p>
+                  <p class="card-text">Happy holidays with this pie! </p>
                 </div>
                 <div class="card-footer">
-                  <a href="applepie.html" class="btn btn-primary">
+                  <Link to="/applepie" class="btn btn-primary">
                     View details
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
 
             <div class="col-sm-6 col-lg-4 mb-4">
               <div class="card">
-                <img
-                  class="card-img-top"
-                  src="images/products/cranberrypiesmall.jpg"
-                />
+                <img class="card-img-top" src={cranberrypiesmall}></img>
                 <div class="card-body">
                   <h5 class="card-title">Cranberry pie</h5>
-                  <p class="card-text">A Christmas favorite</p>
+                  <p class="card-text">A Christmas favorite </p>
                 </div>
                 <div class="card-footer">
-                  <a href="applepie.html" class="btn btn-primary">
+                  <Link to="/applepie" class="btn btn-primary">
                     View details
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
 
             <div class="col-sm-6 col-lg-4 mb-4">
               <div class="card">
-                <img
-                  class="card-img-top"
-                  src="images/products/peachpiesmall.jpg"
-                />
+                <img class="card-img-top" src={peachpiesmall}></img>
                 <div class="card-body">
                   <h5 class="card-title">Peach pie</h5>
                   <p class="card-text">Sweet as peach</p>
                 </div>
                 <div class="card-footer">
-                  <a href="applepie.html" class="btn btn-primary">
+                  <Link to="/applepie" class="btn btn-primary">
                     View details
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
 
             <div class="col-sm-6 col-lg-4 mb-4">
               <div class="card">
-                <img src="images/carousel1.jpg" />
+                <img src={carousel1}></img>
               </div>
             </div>
 
             <div class="col-sm-6 col-lg-4 mb-4">
               <div class="card">
-                <img
-                  class="card-img-top"
-                  src="images/products/pumpkinpiesmall.jpg"
-                />
+                <img class="card-img-top" src={pumpkinpiesmall}></img>
                 <div class="card-body">
                   <h5 class="card-title">Pumpkin pie</h5>
-                  <p class="card-text">Our Halloween favorite</p>
+                  <p class="card-text">Our Halloween favorite </p>
                 </div>
                 <div class="card-footer">
-                  <a href="applepie.html" class="btn btn-primary">
+                  <Link to="/applepie" class="btn btn-primary">
                     View details
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
 
             <div class="col-sm-6 col-lg-4 mb-4">
               <div class="card">
-                <img
-                  class="card-img-top"
-                  src="images/products/rhubarbpiesmall.jpg"
-                />
+                <img class="card-img-top" src={rhubarbpiesmall}></img>
                 <div class="card-body">
                   <h5 class="card-title">Rhubarb pie</h5>
                   <p class="card-text">My God, so sweet!</p>
                 </div>
                 <div class="card-footer">
-                  <a href="applepie.html" class="btn btn-primary">
+                  <Link to="/applepie" class="btn btn-primary">
                     View details
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -350,36 +327,30 @@ function AllPiesComponent() {
 
             <div class="col-sm-6 col-lg-4 mb-4">
               <div class="card">
-                <img
-                  class="card-img-top"
-                  src="images/products/strawberrycheesecakesmall.jpg"
-                />
+                <img class="card-img-top" src={strawberrycheesecakesmall}></img>
                 <div class="card-body">
                   <h5 class="card-title">Strawberry cheese cake</h5>
-                  <p class="card-text">You'll love it!</p>
+                  <p class="card-text">You'll love it! </p>
                 </div>
                 <div class="card-footer">
-                  <a href="applepie.html" class="btn btn-primary">
+                  <Link to="/applepie" class="btn btn-primary">
                     View details
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
 
             <div class="col-sm-6 col-lg-4 mb-4">
               <div class="card">
-                <img
-                  class="card-img-top"
-                  src="images/products/strawberrypiesmall.jpg"
-                />
+                <img class="card-img-top" src={strawberrypiesmall}></img>
                 <div class="card-body">
                   <h5 class="card-title">Strawberry pie</h5>
                   <p class="card-text">Our delicious strawberry pie!</p>
                 </div>
                 <div class="card-footer">
-                  <a href="applepie.html" class="btn btn-primary">
+                  <Link to="/applepie" class="btn btn-primary">
                     View details
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

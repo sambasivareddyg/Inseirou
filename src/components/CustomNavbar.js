@@ -67,7 +67,7 @@ function CustomNavbar() {
                     <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <Link className="dropdown-item" to="/allPies">
+                    <Link className="dropdown-item" to="/allpies">
                       All pies
                     </Link>
                   </li>

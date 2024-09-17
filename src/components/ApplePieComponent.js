@@ -139,21 +139,21 @@ function ApplePieComponent() {
             </div>
 
             <div className="col-md-3 col-sm-6 mb-3">
-              <a href="applepie.html">
+              <Link to="/applepie">
                 <img className="img-fluid" src={rbps} alt=""></img>
-              </a>
+              </Link>
             </div>
 
             <div className="col-md-3 col-sm-6 mb-3">
-              <a href="applepie.html">
+              <Link to="/applepie">
                 <img className="img-fluid" src={pps} alt=""></img>
-              </a>
+              </Link>
             </div>
 
             <div className="col-md-3 col-sm-6 mb-3">
-              <a href="applepie.html">
+              <Link to="/applepie">
                 <img className="img-fluid" src={cps} alt=""></img>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

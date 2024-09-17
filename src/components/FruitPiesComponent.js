@@ -50,16 +50,16 @@ function FruitPiesComponent() {
                   </Link>
                 </li>
                 <li class="nav-item dropdown">
-                  <a
+                  <Link
                     class="nav-link dropdown-toggle active"
-                    href="#"
+                    to="/"
                     id="nav-dropdown"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
                     Pies
                     <span class="visually-hidden">(current)</span>
-                  </a>
+                  </Link>
                   <ul class="dropdown-menu" aria-labelledby="nav-dropdown">
                     <li>
                       <Link class="dropdown-item" to="/fruitpies">
@@ -125,13 +125,14 @@ function FruitPiesComponent() {
           >
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <Link href="/">Home</Link>
+                <Link to="/">Home</Link>
               </li>
               <li class="breadcrumb-item">
-                <Link href="#">Pies</Link>
+                <Link to="/">Pies</Link>
               </li>
-              <li class="breadcrumb-item active" aria-current="page">
-                All pies
+              <li class="breadcrumb-item">
+                <Link to="/fruitpies"></Link>
+                Fruit pies
               </li>
             </ol>
           </nav>

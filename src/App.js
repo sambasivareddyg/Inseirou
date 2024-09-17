@@ -12,8 +12,8 @@ import ProductsOfTheWeekComponent from "./components/ProductsOfTheWeekComponent"
 function App() {
   return (
     <div className="App">
-      <CustomNavbar />
       <main className="container" role="main">
+        <CustomNavbar />
         <BreadcrumbComponent />
         <CarouselComponent />
         <HistoryComponent />
