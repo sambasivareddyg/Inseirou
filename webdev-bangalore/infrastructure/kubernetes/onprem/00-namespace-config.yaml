@@ -1,0 +1,34 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: webdev
+  labels:
+    app: pixelcraft-studio
+    environment: production
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webdev-config
+  namespace: webdev
+data:
+  MYSQL_HOST: "mysql-service"
+  MYSQL_PORT: "3306"
+  MYSQL_USER: "webdev"
+  KAFKA_BROKERS: "kafka-0.kafka-headless.webdev.svc.cluster.local:9092,kafka-1.kafka-headless.webdev.svc.cluster.local:9092,kafka-2.kafka-headless.webdev.svc.cluster.local:9092"
+  REDIS_NODES: "redis-cluster-0.redis-cluster-headless.webdev.svc.cluster.local:6379,redis-cluster-1.redis-cluster-headless.webdev.svc.cluster.local:6379,redis-cluster-2.redis-cluster-headless.webdev.svc.cluster.local:6379"
+  EUREKA_URL: "http://eureka-server-service:8761/eureka/"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: webdev-secrets
+  namespace: webdev
+type: Opaque
+stringData:
+  MYSQL_PASSWORD: "webdev123"
+  MYSQL_ROOT_PASSWORD: "rootpassword"
+  JWT_SECRET: "pixelcraft-super-secret-jwt-key-2024-production"

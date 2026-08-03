@@ -1,0 +1,439 @@
+version: '3.8'
+
+# ============================================================
+#  PixelCraft Studio – Full Stack Docker Compose
+#  Infrastructure: MySQL, Redis Cluster, Kafka, Zookeeper
+#  Services: Eureka, API Gateway, User, Contact, Project, Audit
+#  Frontend: React + Nginx
+# ============================================================
+
+networks:
+  webdev-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  mysql-data:
+  redis-node-1-data:
+  redis-node-2-data:
+  redis-node-3-data:
+  redis-node-4-data:
+  redis-node-5-data:
+  redis-node-6-data:
+  kafka-1-data:
+  kafka-2-data:
+  kafka-3-data:
+  zookeeper-data:
+  zookeeper-log:
+
+services:
+
+  # ──────────────────────────────────────────────
+  # DATABASE – MySQL 8
+  # ──────────────────────────────────────────────
+  mysql:
+    image: mysql:8.0
+    container_name: webdev-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: webdev
+      MYSQL_PASSWORD: webdev123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./infrastructure/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - webdev-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-prootpassword"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  # ──────────────────────────────────────────────
+  # CACHE – Redis Cluster (6 nodes: 3 master + 3 replica)
+  # ──────────────────────────────────────────────
+  redis-node-1:
+    image: redis:7-alpine
+    container_name: redis-node-1
+    restart: unless-stopped
+    command: redis-server /etc/redis/redis-cluster.conf --port 6379
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-node-1-data:/data
+      - ./infrastructure/redis/redis-cluster.conf:/etc/redis/redis-cluster.conf
+    networks:
+      webdev-network:
+        ipv4_address: 172.20.0.11
+
+  redis-node-2:
+    image: redis:7-alpine
+    container_name: redis-node-2
+    restart: unless-stopped
+    command: redis-server /etc/redis/redis-cluster.conf --port 6379
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis-node-2-data:/data
+      - ./infrastructure/redis/redis-cluster.conf:/etc/redis/redis-cluster.conf
+    networks:
+      webdev-network:
+        ipv4_address: 172.20.0.12
+
+  redis-node-3:
+    image: redis:7-alpine
+    container_name: redis-node-3
+    restart: unless-stopped
+    command: redis-server /etc/redis/redis-cluster.conf --port 6379
+    ports:
+      - "6381:6379"
+    volumes:
+      - redis-node-3-data:/data
+      - ./infrastructure/redis/redis-cluster.conf:/etc/redis/redis-cluster.conf
+    networks:
+      webdev-network:
+        ipv4_address: 172.20.0.13
+
+  redis-node-4:
+    image: redis:7-alpine
+    container_name: redis-node-4
+    restart: unless-stopped
+    command: redis-server /etc/redis/redis-cluster.conf --port 6379
+    ports:
+      - "6382:6379"
+    volumes:
+      - redis-node-4-data:/data
+      - ./infrastructure/redis/redis-cluster.conf:/etc/redis/redis-cluster.conf
+    networks:
+      webdev-network:
+        ipv4_address: 172.20.0.14
+
+  redis-node-5:
+    image: redis:7-alpine
+    container_name: redis-node-5
+    restart: unless-stopped
+    command: redis-server /etc/redis/redis-cluster.conf --port 6379
+    ports:
+      - "6383:6379"
+    volumes:
+      - redis-node-5-data:/data
+      - ./infrastructure/redis/redis-cluster.conf:/etc/redis/redis-cluster.conf
+    networks:
+      webdev-network:
+        ipv4_address: 172.20.0.15
+
+  redis-node-6:
+    image: redis:7-alpine
+    container_name: redis-node-6
+    restart: unless-stopped
+    command: redis-server /etc/redis/redis-cluster.conf --port 6379
+    ports:
+      - "6384:6379"
+    volumes:
+      - redis-node-6-data:/data
+      - ./infrastructure/redis/redis-cluster.conf:/etc/redis/redis-cluster.conf
+    networks:
+      webdev-network:
+        ipv4_address: 172.20.0.16
+
+  redis-cluster-init:
+    image: redis:7-alpine
+    container_name: redis-cluster-init
+    depends_on:
+      - redis-node-1
+      - redis-node-2
+      - redis-node-3
+      - redis-node-4
+      - redis-node-5
+      - redis-node-6
+    volumes:
+      - ./infrastructure/redis/init-cluster.sh:/init-cluster.sh
+    command: sh /init-cluster.sh
+    networks:
+      - webdev-network
+
+  # ──────────────────────────────────────────────
+  # MESSAGE BROKER – Zookeeper + Kafka (3 brokers)
+  # ──────────────────────────────────────────────
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: webdev-zookeeper
+    restart: unless-stopped
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    volumes:
+      - zookeeper-data:/var/lib/zookeeper/data
+      - zookeeper-log:/var/lib/zookeeper/log
+    networks:
+      - webdev-network
+    healthcheck:
+      test: ["CMD", "bash", "-c", "echo ruok | nc localhost 2181"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  kafka-1:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka-1
+    restart: unless-stopped
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-1:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 3
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 2
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 3
+      KAFKA_NUM_PARTITIONS: 6
+      KAFKA_LOG_RETENTION_HOURS: 168
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+    ports:
+      - "9092:9092"
+    volumes:
+      - kafka-1-data:/var/lib/kafka/data
+    networks:
+      - webdev-network
+    healthcheck:
+      test: ["CMD", "kafka-broker-api-versions", "--bootstrap-server", "localhost:9092"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+
+  kafka-2:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka-2
+    restart: unless-stopped
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+    environment:
+      KAFKA_BROKER_ID: 2
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-2:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 3
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 2
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 3
+      KAFKA_NUM_PARTITIONS: 6
+    ports:
+      - "9093:9092"
+    volumes:
+      - kafka-2-data:/var/lib/kafka/data
+    networks:
+      - webdev-network
+
+  kafka-3:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka-3
+    restart: unless-stopped
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+    environment:
+      KAFKA_BROKER_ID: 3
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-3:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 3
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 2
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 3
+      KAFKA_NUM_PARTITIONS: 6
+    ports:
+      - "9094:9092"
+    volumes:
+      - kafka-3-data:/var/lib/kafka/data
+    networks:
+      - webdev-network
+
+  kafka-init:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka-init
+    depends_on:
+      kafka-1:
+        condition: service_healthy
+    volumes:
+      - ./infrastructure/kafka/create-topics.sh:/create-topics.sh
+    command: bash /create-topics.sh
+    networks:
+      - webdev-network
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    restart: unless-stopped
+    depends_on:
+      - kafka-1
+    environment:
+      KAFKA_CLUSTERS_0_NAME: webdev-cluster
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka-1:9092,kafka-2:9092,kafka-3:9092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+    ports:
+      - "8090:8080"
+    networks:
+      - webdev-network
+
+  # ──────────────────────────────────────────────
+  # BACKEND MICROSERVICES
+  # ──────────────────────────────────────────────
+  eureka-server:
+    build:
+      context: ./backend/eureka-server
+      dockerfile: Dockerfile
+    container_name: eureka-server
+    restart: unless-stopped
+    ports:
+      - "8761:8761"
+    networks:
+      - webdev-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8761/actuator/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+  api-gateway:
+    build:
+      context: ./backend/api-gateway
+      dockerfile: Dockerfile
+    container_name: api-gateway
+    restart: unless-stopped
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+    environment:
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    ports:
+      - "8080:8080"
+    networks:
+      - webdev-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/actuator/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+  user-service:
+    build:
+      context: ./backend/user-service
+      dockerfile: Dockerfile
+    container_name: user-service
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      kafka-1:
+        condition: service_healthy
+    environment:
+      - MYSQL_USER=webdev
+      - MYSQL_PASSWORD=webdev123
+      - KAFKA_BROKERS=kafka-1:9092,kafka-2:9092,kafka-3:9092
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    ports:
+      - "8081:8081"
+    networks:
+      - webdev-network
+
+  contact-service:
+    build:
+      context: ./backend/contact-service
+      dockerfile: Dockerfile
+    container_name: contact-service
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      kafka-1:
+        condition: service_healthy
+    environment:
+      - MYSQL_USER=webdev
+      - MYSQL_PASSWORD=webdev123
+      - KAFKA_BROKERS=kafka-1:9092,kafka-2:9092,kafka-3:9092
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    ports:
+      - "8082:8082"
+    networks:
+      - webdev-network
+
+  project-service:
+    build:
+      context: ./backend/project-service
+      dockerfile: Dockerfile
+    container_name: project-service
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      kafka-1:
+        condition: service_healthy
+    environment:
+      - MYSQL_USER=webdev
+      - MYSQL_PASSWORD=webdev123
+      - KAFKA_BROKERS=kafka-1:9092,kafka-2:9092,kafka-3:9092
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    ports:
+      - "8083:8083"
+    networks:
+      - webdev-network
+
+  audit-service:
+    build:
+      context: ./backend/audit-service
+      dockerfile: Dockerfile
+    container_name: audit-service
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+      kafka-1:
+        condition: service_healthy
+    environment:
+      - MYSQL_USER=webdev
+      - MYSQL_PASSWORD=webdev123
+      - KAFKA_BROKERS=kafka-1:9092,kafka-2:9092,kafka-3:9092
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    ports:
+      - "8084:8084"
+    networks:
+      - webdev-network
+
+  # ──────────────────────────────────────────────
+  # FRONTEND – React + Nginx
+  # ──────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: webdev-frontend
+    restart: unless-stopped
+    depends_on:
+      - api-gateway
+    ports:
+      - "3000:80"
+    networks:
+      - webdev-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
