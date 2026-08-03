@@ -1,0 +1,33 @@
+# Node
+node_modules/
+dist/
+.env
+.env.local
+
+# Java/Maven
+target/
+*.jar
+*.war
+*.class
+.mvn/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.iws
+
+# Docker
+.docker/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Kubernetes secrets (never commit real secrets)
+*-secret.yaml
+*secrets-prod*
+
+# Logs
+*.log
+logs/

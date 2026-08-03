@@ -1,0 +1,68 @@
+---
+# AWS EKS Deployment Configuration
+# Differences from on-prem:
+#   - MySQL    → Amazon RDS for MySQL (managed)
+#   - Redis    → Amazon ElastiCache for Redis Cluster Mode
+#   - Kafka    → Amazon MSK (Managed Streaming for Kafka)
+#   - Storage  → gp3 EBS StorageClass
+#   - Ingress  → AWS Load Balancer Controller (ALB)
+#   - TLS      → AWS ACM certificate
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: webdev
+  labels:
+    app: pixelcraft-studio
+    environment: production
+    cloud: aws
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webdev-config
+  namespace: webdev
+data:
+  # ── Replace these with your actual AWS managed endpoints ──
+  MYSQL_HOST: "pixelcraft-mysql.xxxxxxxxx.ap-south-1.rds.amazonaws.com"
+  MYSQL_PORT: "3306"
+  MYSQL_USER: "webdev"
+  # Redis Cluster endpoints (ElastiCache cluster mode enabled)
+  REDIS_NODES: "pixelcraft-redis.xxxxx.clustercfg.aps1.cache.amazonaws.com:6379"
+  # MSK Bootstrap brokers
+  KAFKA_BROKERS: "b-1.pixelcraft-msk.xxxxx.c2.kafka.ap-south-1.amazonaws.com:9092,b-2.pixelcraft-msk.xxxxx.c2.kafka.ap-south-1.amazonaws.com:9092,b-3.pixelcraft-msk.xxxxx.c2.kafka.ap-south-1.amazonaws.com:9092"
+  EUREKA_URL: "http://eureka-server-service:8761/eureka/"
+  AWS_REGION: "ap-south-1"
+
+---
+# AWS Secrets Manager integration via External Secrets Operator
+# Alternatively use Kubernetes secrets directly for simplicity
+apiVersion: v1
+kind: Secret
+metadata:
+  name: webdev-secrets
+  namespace: webdev
+type: Opaque
+stringData:
+  MYSQL_PASSWORD: "REPLACE_WITH_RDS_PASSWORD"
+  MYSQL_ROOT_PASSWORD: "REPLACE_WITH_ROOT_PASSWORD"
+  JWT_SECRET: "pixelcraft-super-secret-jwt-key-2024-production"
+
+---
+# EBS gp3 StorageClass for AWS
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ebs-gp3
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: ebs.csi.aws.com
+parameters:
+  type: gp3
+  encrypted: "true"
+  iops: "3000"
+  throughput: "125"
+reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
