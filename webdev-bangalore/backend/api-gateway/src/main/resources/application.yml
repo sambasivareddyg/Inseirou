@@ -8,7 +8,7 @@ spring:
     gateway:
       globalcors:
         cors-configurations:
-          '[/**]':
+          "[/**]":
             allowedOrigins: "*"
             allowedMethods: [GET, POST, PUT, DELETE, OPTIONS]
             allowedHeaders: "*"
@@ -17,12 +17,12 @@ spring:
           uri: lb://user-service
           predicates:
             - Path=/api/users/**
-          filters:
-            - StripPrefix=1
-            - name: CircuitBreaker
-              args:
-                name: user-service
-                fallbackUri: forward:/fallback
+        #          filters:
+        #            - StripPrefix=1
+        #            - name: CircuitBreaker
+        #              args:
+        #                name: user-service
+        #                fallbackUri: forward:/fallback
 
         - id: project-service
           uri: lb://project-service

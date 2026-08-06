@@ -1,4 +1,4 @@
-# PixelCraft Studio — Full-Stack Web Application
+# InSeirou labs — Full-Stack Web Application
 
 **Bangalore's Premier Web Development Studio**  
 A production-grade, cloud-native web application built with React, Spring Cloud Microservices, Redis Cluster, Apache Kafka, and MySQL — fully Dockerized and Kubernetes-ready.
@@ -81,25 +81,26 @@ webdev-bangalore/
 
 ## 🛠️ Tech Stack
 
-| Layer            | Technology                                    |
-|------------------|-----------------------------------------------|
-| **Frontend**     | React 18, Tailwind CSS 3, Vite, React Router  |
-| **API Gateway**  | Spring Cloud Gateway, Netflix Eureka Client   |
-| **Microservices**| Spring Boot 3.2, Spring Cloud 2023, Java 17   |
-| **Service Discovery** | Spring Cloud Netflix Eureka             |
-| **Caching**      | Redis Cluster (6 nodes), Spring Data Redis    |
-| **Messaging**    | Apache Kafka (3 brokers), Spring Kafka        |
-| **Database**     | MySQL 8.0, Spring Data JPA, Hibernate         |
-| **Auth**         | Spring Security + JWT (jjwt)                  |
-| **Containerization** | Docker, Docker Compose                   |
-| **Orchestration**| Kubernetes (on-prem + AWS EKS)                |
-| **AWS Services** | EKS, RDS, ElastiCache, MSK, ECR, ALB, ACM    |
+| Layer                 | Technology                                   |
+| --------------------- | -------------------------------------------- |
+| **Frontend**          | React 18, Tailwind CSS 3, Vite, React Router |
+| **API Gateway**       | Spring Cloud Gateway, Netflix Eureka Client  |
+| **Microservices**     | Spring Boot 3.2, Spring Cloud 2023, Java 17  |
+| **Service Discovery** | Spring Cloud Netflix Eureka                  |
+| **Caching**           | Redis Cluster (6 nodes), Spring Data Redis   |
+| **Messaging**         | Apache Kafka (3 brokers), Spring Kafka       |
+| **Database**          | MySQL 8.0, Spring Data JPA, Hibernate        |
+| **Auth**              | Spring Security + JWT (jjwt)                 |
+| **Containerization**  | Docker, Docker Compose                       |
+| **Orchestration**     | Kubernetes (on-prem + AWS EKS)               |
+| **AWS Services**      | EKS, RDS, ElastiCache, MSK, ECR, ALB, ACM    |
 
 ---
 
 ## 🚀 Quick Start — Local Development
 
 ### Prerequisites
+
 - Docker Desktop ≥ 24.0
 - Docker Compose ≥ 2.0
 - Node.js 20 (for frontend dev only)
@@ -120,16 +121,16 @@ docker compose logs -f
 
 ### 2. Access the application
 
-| Service              | URL                              |
-|----------------------|----------------------------------|
-| **Frontend**         | http://localhost:3000            |
-| **API Gateway**      | http://localhost:8080            |
-| **Eureka Dashboard** | http://localhost:8761            |
-| **Kafka UI**         | http://localhost:8090            |
-| **User Service**     | http://localhost:8081            |
-| **Contact Service**  | http://localhost:8082            |
-| **Project Service**  | http://localhost:8083            |
-| **Audit Service**    | http://localhost:8084            |
+| Service              | URL                   |
+| -------------------- | --------------------- |
+| **Frontend**         | http://localhost:3000 |
+| **API Gateway**      | http://localhost:8080 |
+| **Eureka Dashboard** | http://localhost:8761 |
+| **Kafka UI**         | http://localhost:8090 |
+| **User Service**     | http://localhost:8081 |
+| **Contact Service**  | http://localhost:8082 |
+| **Project Service**  | http://localhost:8083 |
+| **Audit Service**    | http://localhost:8084 |
 
 ### 3. Test the APIs
 
@@ -180,6 +181,7 @@ chmod +x scripts/build-and-push.sh
 ### On-Premises
 
 **Prerequisites:**
+
 - Kubernetes cluster (v1.28+)
 - `kubectl` configured
 - Nginx Ingress Controller installed
@@ -205,6 +207,7 @@ kubectl get all -n webdev
 ### AWS EKS
 
 **Prerequisites:**
+
 - EKS cluster (v1.28+) in ap-south-1
 - AWS Load Balancer Controller installed
 - Amazon RDS for MySQL (replace endpoint in ConfigMap)
@@ -232,25 +235,25 @@ kubectl get ingress -n webdev
 
 ## 📊 Kafka Topics
 
-| Topic                    | Partitions | Replication | Purpose                    |
-|--------------------------|------------|-------------|----------------------------|
-| `audit-log`              | 6          | 3           | All service audit events   |
-| `contact-notifications`  | 3          | 3           | New contact form alerts     |
-| `user-events`            | 3          | 3           | User lifecycle events       |
-| `project-events`         | 3          | 3           | Project lifecycle events    |
-| `audit-log-dlq`          | 3          | 2           | Dead letter queue           |
+| Topic                   | Partitions | Replication | Purpose                  |
+| ----------------------- | ---------- | ----------- | ------------------------ |
+| `audit-log`             | 6          | 3           | All service audit events |
+| `contact-notifications` | 3          | 3           | New contact form alerts  |
+| `user-events`           | 3          | 3           | User lifecycle events    |
+| `project-events`        | 3          | 3           | Project lifecycle events |
+| `audit-log-dlq`         | 3          | 2           | Dead letter queue        |
 
 ---
 
 ## 🔴 Redis Caching Strategy
 
-| Cache Key          | TTL     | Service          |
-|--------------------|---------|------------------|
-| `users::all`       | 30 min  | user-service     |
-| `users::{id}`      | 30 min  | user-service     |
-| `contacts::all`    | 30 min  | contact-service  |
-| `projects::all`    | 15 min  | project-service  |
-| `projects::{id}`   | 15 min  | project-service  |
+| Cache Key        | TTL    | Service         |
+| ---------------- | ------ | --------------- |
+| `users::all`     | 30 min | user-service    |
+| `users::{id}`    | 30 min | user-service    |
+| `contacts::all`  | 30 min | contact-service |
+| `projects::all`  | 15 min | project-service |
+| `projects::{id}` | 15 min | project-service |
 
 Cache is evicted on write operations (`@CacheEvict`).
 
@@ -270,6 +273,6 @@ Cache is evicted on write operations (`@CacheEvict`).
 
 ## 📍 Contact
 
-**PixelCraft Studio**  
-HSR Layout, Bangalore, Karnataka 560102  
-📧 hello@pixelcraft.in | 📞 +91 98765 43210
+**InSeirou Labs**  
+Madiwala, Bangalore, Karnataka 560068  
+📧 sambasivareddy.g@gmail.com | 📞 +91 9986067474
