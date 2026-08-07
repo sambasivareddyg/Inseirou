@@ -17,8 +17,8 @@ spring:
           uri: lb://user-service
           predicates:
             - Path=/api/users/**
-        #          filters:
-        #            - StripPrefix=1
+          filters:
+            - StripPrefix=1
         #            - name: CircuitBreaker
         #              args:
         #                name: user-service
