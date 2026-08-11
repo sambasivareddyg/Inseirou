@@ -5,6 +5,8 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "projects")
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
@@ -32,9 +34,12 @@ public class Project {
     private String clientName;
     private String thumbnailUrl;
 
-    @Column(nullable = false)
+   @Column(columnDefinition = "DATETIME(6)")
+   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt = LocalDateTime.now();
 
+    @Column(columnDefinition = "DATETIME(6)")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime completedAt;
 
     public enum Status { IN_PROGRESS, LIVE, ARCHIVED }

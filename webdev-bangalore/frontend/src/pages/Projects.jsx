@@ -8,7 +8,7 @@ const SAMPLE = [
     category: "Fintech",
     description:
       "Real-time portfolio tracking platform with microservices and Kafka event streaming.",
-    tech: ["React", "Spring Boot", "Kafka", "Redis"],
+    techStack: ["React", "Spring Boot", "Kafka", "Redis"],
     status: "LIVE",
   },
   {
@@ -17,7 +17,7 @@ const SAMPLE = [
     category: "Healthcare",
     description:
       "Patient management system with HIPAA-compliant data pipelines and real-time alerts.",
-    tech: ["React", "Java", "MySQL", "Docker"],
+    techStack: ["React", "Java", "MySQL", "Docker"],
     status: "LIVE",
   },
   {
@@ -26,7 +26,7 @@ const SAMPLE = [
     category: "E-commerce",
     description:
       "Multi-vendor marketplace with ML-powered recommendations and Redis caching layer.",
-    tech: ["Next.js", "Spring Cloud", "Redis", "AWS"],
+    techStack: ["Next.js", "Spring Cloud", "Redis", "AWS"],
     status: "LIVE",
   },
   {
@@ -35,7 +35,7 @@ const SAMPLE = [
     category: "Logistics",
     description:
       "Fleet management dashboard with GPS tracking, route optimization, and live updates.",
-    tech: ["React", "Kafka", "Kubernetes", "MySQL"],
+    techStack: ["React", "Kafka", "Kubernetes", "MySQL"],
     status: "LIVE",
   },
   {
@@ -44,7 +44,7 @@ const SAMPLE = [
     category: "EdTech",
     description:
       "Interactive learning platform with video streaming, quizzes, and progress analytics.",
-    tech: ["React", "Spring Boot", "AWS", "Redis"],
+    techStack: ["React", "Spring Boot", "AWS", "Redis"],
     status: "LIVE",
   },
   {
@@ -53,7 +53,7 @@ const SAMPLE = [
     category: "HRTech",
     description:
       "Employee engagement platform with payroll automation and compliance reporting.",
-    tech: ["React", "Java", "MySQL", "Docker"],
+    techStack: ["React", "Java", "MySQL", "Docker"],
     status: "LIVE",
   },
 ];
@@ -143,7 +143,7 @@ export default function Projects() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filtered.map((p) => (
+            {filtered?.map((p) => (
               <div
                 key={p.id}
                 className="glass rounded-2xl p-8 hover:border-brand-500/40 hover:-translate-y-1 transition-all duration-300 group"
@@ -164,7 +164,7 @@ export default function Projects() {
                   {p.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {p.tech.map((t) => (
+                  {p.techStack?.map((t) => (
                     <span
                       key={t}
                       className="text-xs px-3 py-1 bg-brand-950/60 text-brand-300 rounded-full font-mono border border-brand-800/40"

@@ -13,6 +13,10 @@ import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.serializer.*;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
@@ -64,10 +68,18 @@ public class RedisConfig {
 
     @Bean
     public RedisCacheManager cacheManager() {
+        // 1. Configure Jackson ObjectMapper to handle Java 8 Date/Time
+    ObjectMapper objectMapper = new ObjectMapper();
+    objectMapper.registerModule(new JavaTimeModule());
+    // Optional: Write dates as ISO-8601 strings ("2026-08-11T19:41:00") instead of array timestamps ([2026,8,11,19,41])
+    objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
+    // 2. Pass the configured ObjectMapper to the serializer
+    GenericJackson2JsonRedisSerializer serializer = new GenericJackson2JsonRedisSerializer(objectMapper);
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofMinutes(15))
                 .serializeValuesWith(RedisSerializationContext.SerializationPair
-                        .fromSerializer(new GenericJackson2JsonRedisSerializer()));
+                        .fromSerializer(serializer));
         return RedisCacheManager.builder(redisConnectionFactory())
                 .cacheDefaults(config).build();
     }
