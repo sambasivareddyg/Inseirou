@@ -1,7 +1,7 @@
-version: '3.8'
+version: "3.8"
 
 # ============================================================
-#  PixelCraft Studio – Full Stack Docker Compose
+#  InSeirou labs – Full Stack Docker Compose
 #  Infrastructure: MySQL, Redis Cluster, Kafka, Zookeeper
 #  Services: Eureka, API Gateway, User, Contact, Project, Audit
 #  Frontend: React + Nginx
@@ -29,7 +29,6 @@ volumes:
   zookeeper-log:
 
 services:
-
   # ──────────────────────────────────────────────
   # DATABASE – MySQL 8
   # ──────────────────────────────────────────────
@@ -49,7 +48,16 @@ services:
     networks:
       - webdev-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-prootpassword"]
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-uroot",
+          "-prootpassword",
+        ]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -205,7 +213,13 @@ services:
     networks:
       - webdev-network
     healthcheck:
-      test: ["CMD", "kafka-broker-api-versions", "--bootstrap-server", "localhost:9092"]
+      test:
+        [
+          "CMD",
+          "kafka-broker-api-versions",
+          "--bootstrap-server",
+          "localhost:9092",
+        ]
       interval: 15s
       timeout: 10s
       retries: 10
@@ -301,7 +315,15 @@ services:
     networks:
       - webdev-network
     healthcheck:
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8761/actuator/health"]
+      test:
+        [
+          "CMD",
+          "wget",
+          "--quiet",
+          "--tries=1",
+          "--spider",
+          "http://localhost:8761/actuator/health",
+        ]
       interval: 15s
       timeout: 5s
       retries: 10
@@ -322,7 +344,15 @@ services:
     networks:
       - webdev-network
     healthcheck:
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/actuator/health"]
+      test:
+        [
+          "CMD",
+          "wget",
+          "--quiet",
+          "--tries=1",
+          "--spider",
+          "http://localhost:8080/actuator/health",
+        ]
       interval: 15s
       timeout: 5s
       retries: 10
@@ -433,7 +463,15 @@ services:
     networks:
       - webdev-network
     healthcheck:
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80"]
+      test:
+        [
+          "CMD",
+          "wget",
+          "--quiet",
+          "--tries=1",
+          "--spider",
+          "http://localhost:80",
+        ]
       interval: 15s
       timeout: 5s
       retries: 5

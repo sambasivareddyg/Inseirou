@@ -1,5 +1,5 @@
 #!/bin/bash
-# Create Kafka topics for PixelCraft Studio
+# Create Kafka topics for InSeirou labs
 
 KAFKA_BROKER="kafka-1:9092"
 
