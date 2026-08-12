@@ -24,6 +24,10 @@ spring:
           - redis-node-3:6379
   kafka:
     bootstrap-servers: ${KAFKA_BROKERS:kafka-1:9092,kafka-2:9092,kafka-3:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
 
 eureka:
   client:

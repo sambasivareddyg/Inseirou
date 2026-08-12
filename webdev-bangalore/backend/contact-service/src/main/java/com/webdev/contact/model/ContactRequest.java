@@ -21,14 +21,15 @@ public class ContactRequest {
     private String company;
     private String service;
 
-    @Column(nullable = false, length = 2000)
+    @Column(nullable = false)
     private String message;
 
     @Enumerated(EnumType.STRING)
     private Status status = Status.NEW;
 
-    @Column(nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    @org.hibernate.annotations.CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
     public enum Status { NEW, IN_PROGRESS, CLOSED }
 }
