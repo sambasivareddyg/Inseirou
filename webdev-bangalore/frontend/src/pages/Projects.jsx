@@ -9,7 +9,7 @@ const SAMPLE = [
     description:
       "Real-time portfolio tracking platform with microservices and Kafka event streaming.",
     techStack: ["React", "Spring Boot", "Kafka", "Redis"],
-    status: "LIVE",
+    status: "Wish list",
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const SAMPLE = [
     description:
       "Patient management system with HIPAA-compliant data pipelines and real-time alerts.",
     techStack: ["React", "Java", "MySQL", "Docker"],
-    status: "LIVE",
+    status: "Wish list",
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const SAMPLE = [
     description:
       "Multi-vendor marketplace with ML-powered recommendations and Redis caching layer.",
     techStack: ["Next.js", "Spring Cloud", "Redis", "AWS"],
-    status: "LIVE",
+    status: "Wish list",
   },
   {
     id: 4,
@@ -36,7 +36,7 @@ const SAMPLE = [
     description:
       "Fleet management dashboard with GPS tracking, route optimization, and live updates.",
     techStack: ["React", "Kafka", "Kubernetes", "MySQL"],
-    status: "LIVE",
+    status: "Wish list",
   },
   {
     id: 5,
@@ -45,7 +45,7 @@ const SAMPLE = [
     description:
       "Interactive learning platform with video streaming, quizzes, and progress analytics.",
     techStack: ["React", "Spring Boot", "AWS", "Redis"],
-    status: "LIVE",
+    status: "Wish list",
   },
   {
     id: 6,
@@ -54,7 +54,7 @@ const SAMPLE = [
     description:
       "Employee engagement platform with payroll automation and compliance reporting.",
     techStack: ["React", "Java", "MySQL", "Docker"],
-    status: "LIVE",
+    status: "Wish list",
   },
 ];
 
