@@ -42,5 +42,5 @@ public class Project {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime completedAt;
 
-    public enum Status { IN_PROGRESS, LIVE, ARCHIVED }
+    public enum Status { IN_PROGRESS, LIVE, ARCHIVED, WISHLIST }
 }
