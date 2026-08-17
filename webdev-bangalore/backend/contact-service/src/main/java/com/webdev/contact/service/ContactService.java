@@ -37,7 +37,7 @@ public class ContactService {
         ContactRequest saved = contactRepository.save(request);
         auditProducer.publishEvent("CONTACT_SUBMITTED", saved.getId().toString(), dto.getEmail());
         log.info("Contact request submitted by: {}", dto.getEmail());
-        EmailSender.sendEmail("A new contact request has been submitted:" + dto.toString());      return saved;
+          return saved;
     }
 
     @Cacheable(value = "contacts", key = "'all'")
