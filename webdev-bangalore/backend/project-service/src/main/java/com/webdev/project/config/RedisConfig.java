@@ -10,6 +10,7 @@ import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
+import org.springframework.data.redis.connection.lettuce.LettuceClientConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.serializer.*;
 
@@ -43,8 +44,13 @@ public class RedisConfig {
     @Bean
     @Primary
     public LettuceConnectionFactory redisConnectionFactory() {
+        LettuceClientConfiguration clientConfig = LettuceClientConfiguration.builder()
+                .commandTimeout(Duration.ofSeconds(2))
+                .shutdownTimeout(Duration.ZERO)
+                .build();
+
         if ("standalone".equalsIgnoreCase(redisMode)) {
-            return new LettuceConnectionFactory(new RedisStandaloneConfiguration(redisHost, redisPort));
+            return new LettuceConnectionFactory(new RedisStandaloneConfiguration(redisHost, redisPort), clientConfig);
         }
 
         String[] clusterNodes = env.getProperty("spring.data.redis.cluster.nodes", String[].class);
@@ -63,24 +69,23 @@ public class RedisConfig {
 
         RedisClusterConfiguration clusterConfig = new RedisClusterConfiguration(clusterNodeList);
         clusterConfig.setMaxRedirects(3);
-        return new LettuceConnectionFactory(clusterConfig);
+        return new LettuceConnectionFactory(clusterConfig, clientConfig);
     }
 
     @Bean
     public RedisCacheManager cacheManager() {
-        // 1. Configure Jackson ObjectMapper to handle Java 8 Date/Time
-    ObjectMapper objectMapper = new ObjectMapper();
-    objectMapper.registerModule(new JavaTimeModule());
-    // Optional: Write dates as ISO-8601 strings ("2026-08-11T19:41:00") instead of array timestamps ([2026,8,11,19,41])
-    objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-    // 2. Pass the configured ObjectMapper to the serializer
-    GenericJackson2JsonRedisSerializer serializer = new GenericJackson2JsonRedisSerializer(objectMapper);
+        GenericJackson2JsonRedisSerializer serializer = new GenericJackson2JsonRedisSerializer(objectMapper);
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofMinutes(15))
+                .entryTtl(Duration.ofMinutes(5))
+                .disableCachingNullValues()
                 .serializeValuesWith(RedisSerializationContext.SerializationPair
                         .fromSerializer(serializer));
         return RedisCacheManager.builder(redisConnectionFactory())
-                .cacheDefaults(config).build();
+                .cacheDefaults(config)
+                .build();
     }
 }

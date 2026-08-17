@@ -2,27 +2,27 @@ import React from "react";
 
 const TEAM = [
   {
-    name: "Arjun Sharma",
+    name: "Sambasiva Reddy",
     role: "Founder & CTO",
-    exp: "12 yrs",
+    exp: "24 yrs",
     stack: "Java · Spring · AWS",
   },
   {
-    name: "Priya Nair",
+    name: "Freelancer-Frontend",
     role: "Lead Frontend Architect",
-    exp: "9 yrs",
+    exp: "3 to 6 yrs",
     stack: "React · TypeScript · UX",
   },
   {
-    name: "Rahul Mehta",
+    name: "Freelancer-DevOps",
     role: "DevOps Lead",
-    exp: "8 yrs",
+    exp: "1 to 3 yrs",
     stack: "K8s · Docker · Terraform",
   },
   {
-    name: "Sneha Reddy",
+    name: "Freelancer-Backend",
     role: "Backend Engineer",
-    exp: "7 yrs",
+    exp: "3 to 7 yrs",
     stack: "Spring Boot · Kafka · Redis",
   },
 ];

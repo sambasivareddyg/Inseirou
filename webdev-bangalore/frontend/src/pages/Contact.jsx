@@ -67,12 +67,12 @@ export default function Contact() {
               {
                 icon: "📧",
                 title: "Email",
-                lines: ["hello@inseirou.in", "support@inseirou.in"],
+                lines: ["sambasivareddy.g@gmail.com"],
               },
               {
                 icon: "📞",
                 title: "Phone",
-                lines: ["+91 98765 43210", "Mon–Sat, 9am–7pm IST"],
+                lines: ["+91 9986067474", "Mon–Sat, 9am–7pm IST"],
               },
             ].map((i) => (
               <div key={i.title} className="flex gap-4">
@@ -131,9 +131,11 @@ export default function Contact() {
                 name="service"
                 value={form.service}
                 onChange={handle}
-                className={inputCls}
+                className={`${inputCls} bg-slate-900/80 text-slate-100 appearance-none`}
               >
-                <option value="">Select a Service</option>
+                <option value="" className="bg-slate-900 text-slate-300">
+                  Select a Service
+                </option>
                 {[
                   "Web Development",
                   "Mobile App",
@@ -142,7 +144,11 @@ export default function Contact() {
                   "DevOps",
                   "Other",
                 ].map((s) => (
-                  <option key={s} value={s}>
+                  <option
+                    key={s}
+                    value={s}
+                    className="bg-slate-900 text-slate-100"
+                  >
                     {s}
                   </option>
                 ))}
