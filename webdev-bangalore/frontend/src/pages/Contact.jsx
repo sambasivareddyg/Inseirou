@@ -67,7 +67,7 @@ export default function Contact() {
               {
                 icon: "📧",
                 title: "Email",
-                lines: ["samabsivareddy.g@gmail.com"],
+                lines: ["sambasivareddy.g@gmail.com"],
               },
               {
                 icon: "📞",
@@ -144,7 +144,11 @@ export default function Contact() {
                   "DevOps",
                   "Other",
                 ].map((s) => (
-                  <option key={s} value={s} className="bg-slate-900 text-slate-100">
+                  <option
+                    key={s}
+                    value={s}
+                    className="bg-slate-900 text-slate-100"
+                  >
                     {s}
                   </option>
                 ))}
