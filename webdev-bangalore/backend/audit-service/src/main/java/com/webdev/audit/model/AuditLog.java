@@ -22,6 +22,7 @@ public class AuditLog {
     private String service;
 
     @Column(nullable = false)
+    @Builder.Default
     private LocalDateTime timestamp = LocalDateTime.now();
 
     @Column(length = 4000)

@@ -371,8 +371,8 @@ services:
       kafka-1:
         condition: service_healthy
     environment:
-      - MYSQL_USER=webdev
-      - MYSQL_PASSWORD=webdev123
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - KAFKA_BROKERS=kafka-1:9092,kafka-2:9092,kafka-3:9092
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
     ports:
@@ -394,8 +394,9 @@ services:
       kafka-1:
         condition: service_healthy
     environment:
-      - MYSQL_USER=webdev
-      - MYSQL_PASSWORD=webdev123
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - APP_PASSWORD=${APP_PASSWORD}
       - KAFKA_BROKERS=kafka-1:9092,kafka-2:9092,kafka-3:9092
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
     ports:
@@ -417,8 +418,8 @@ services:
       kafka-1:
         condition: service_healthy
     environment:
-      - MYSQL_USER=webdev
-      - MYSQL_PASSWORD=webdev123
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - KAFKA_BROKERS=kafka-1:9092,kafka-2:9092,kafka-3:9092
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
     ports:
@@ -438,8 +439,8 @@ services:
       kafka-1:
         condition: service_healthy
     environment:
-      - MYSQL_USER=webdev
-      - MYSQL_PASSWORD=webdev123
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - KAFKA_BROKERS=kafka-1:9092,kafka-2:9092,kafka-3:9092
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
     ports:

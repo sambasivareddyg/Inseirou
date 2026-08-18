@@ -29,6 +29,7 @@ public class Project {
     private List<String> techStack;
 
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Status status = Status.IN_PROGRESS;
 
     private String clientName;
@@ -36,6 +37,7 @@ public class Project {
 
    @Column(columnDefinition = "DATETIME(6)")
    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+   @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(columnDefinition = "DATETIME(6)")

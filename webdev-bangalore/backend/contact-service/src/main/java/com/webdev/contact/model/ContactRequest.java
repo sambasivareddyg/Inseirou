@@ -25,6 +25,7 @@ public class ContactRequest {
     private String message;
 
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Status status = Status.NEW;
 
     @org.hibernate.annotations.CreationTimestamp
