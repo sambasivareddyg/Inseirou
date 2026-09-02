@@ -30,11 +30,11 @@ export default function Navbar() {
         <Link to="/" className="flex items-center gap-3 group">
           <div className="w-9 h-9 rounded-lg bg-brand-500 flex items-center justify-center glow group-hover:scale-110 transition-transform">
             <span className="font-display font-black text-white text-sm">
-              IS
+              IDF
             </span>
           </div>
           <span className="font-display font-bold text-xl text-white">
-            InSeirou
+            InDevFlux
           </span>
         </Link>
 

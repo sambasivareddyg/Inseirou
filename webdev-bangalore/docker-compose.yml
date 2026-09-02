@@ -14,6 +14,12 @@ networks:
       config:
         - subnet: 172.20.0.0/16
 
+x-application-logging: &application-logging
+  driver: json-file
+  options:
+    max-size: "200m"
+    max-file: "1"
+
 volumes:
   mysql-data:
   redis-node-1-data:
@@ -310,6 +316,7 @@ services:
       dockerfile: Dockerfile
     container_name: eureka-server
     restart: unless-stopped
+    logging: *application-logging
     ports:
       - "8761:8761"
     networks:
@@ -334,6 +341,7 @@ services:
       dockerfile: Dockerfile
     container_name: api-gateway
     restart: unless-stopped
+    logging: *application-logging
     depends_on:
       eureka-server:
         condition: service_healthy
@@ -363,6 +371,7 @@ services:
       dockerfile: Dockerfile
     container_name: user-service
     restart: unless-stopped
+    logging: *application-logging
     depends_on:
       mysql:
         condition: service_healthy
@@ -386,6 +395,7 @@ services:
       dockerfile: Dockerfile
     container_name: contact-service
     restart: unless-stopped
+    logging: *application-logging
     depends_on:
       mysql:
         condition: service_healthy
@@ -410,6 +420,7 @@ services:
       dockerfile: Dockerfile
     container_name: project-service
     restart: unless-stopped
+    logging: *application-logging
     depends_on:
       mysql:
         condition: service_healthy
@@ -433,6 +444,7 @@ services:
       dockerfile: Dockerfile
     container_name: audit-service
     restart: unless-stopped
+    logging: *application-logging
     depends_on:
       mysql:
         condition: service_healthy
@@ -457,6 +469,7 @@ services:
       dockerfile: Dockerfile
     container_name: webdev-frontend
     restart: unless-stopped
+    logging: *application-logging
     depends_on:
       - api-gateway
     ports:

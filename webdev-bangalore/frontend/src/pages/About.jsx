@@ -64,10 +64,9 @@ export default function About() {
             <span className="text-gradient italic">Delivered Globally</span>
           </h1>
           <p className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
-            Founded in 2026, InSeirou labs is a boutique web development agency
-            in Bangalore. We specialize in building high-performance,
-            cloud-native web applications for startups and enterprises
-            worldwide.
+            Founded in 2026, InDevFlux is a boutique web development agency in
+            Bangalore. We specialize in building high-performance, cloud-native
+            web applications for startups and enterprises worldwide.
           </p>
         </div>
 

@@ -42,7 +42,7 @@ public class EmailSender {
                     Message.RecipientType.TO,
                     InternetAddress.parse(username) // Sending to yourself
             );
-            message.setSubject("New Customer requirement from Inseirou Contact Service");
+            message.setSubject("InDevFlux - New Requirement");
             message.setText(notificationMessage);
 
             // Send Email

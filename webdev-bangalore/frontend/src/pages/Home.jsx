@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const STATS = [
   { value: "We have just started", label: "Projects Delivered" },
-  { value: "24+", label: "Years Experience in Industry" },
+  { value: "24+", label: "Years Experience in IT industry" },
   { value: "We have just started", label: "Happy Clients" },
   { value: "5", label: "Team Members" },
 ];

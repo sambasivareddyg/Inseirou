@@ -53,3 +53,7 @@ management:
 jwt:
   secret: ${JWT_SECRET:pixelcraft-super-secret-jwt-key-2024}
   expiration: 86400000
+
+logging:
+  level:
+    root: ERROR

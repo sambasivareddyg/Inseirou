@@ -9,11 +9,11 @@ export default function Footer() {
           <div className="flex items-center gap-3 mb-4">
             <div className="w-9 h-9 rounded-lg bg-brand-500 flex items-center justify-center">
               <span className="font-display font-black text-white text-sm">
-                IS
+                IDF
               </span>
             </div>
             <span className="font-display font-bold text-xl text-white">
-              InSeirou Labs
+              InDevFlux
             </span>
           </div>
           <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
@@ -72,7 +72,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-2">
           <p className="text-slate-500 text-xs">
-            © 2026 InSeirou labs. All rights reserved.
+            © 2026 InDevFlux. All rights reserved.
           </p>
           <p className="text-slate-600 text-xs font-mono">
             Made with ❤️ in Bangalore
